@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Multimarca - Venta Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Encabezado y Navegación -->
+    <header class="header">
+        <div class="logo">🛍️ MultiShop</div>
+        <nav class="nav">
+            <span id="user-display">Invitado</span>
+            <button id="btn-auth" onclick="toggleAuthModal()">Iniciar Sesión / Registro</button>
+            <button onclick="toggleCart()">🛒 Carrito (<span id="cart-count">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- Filtros por Categoria y Marca -->
+    <section class="filters">
+        <div class="filter-group">
+            <label for="select-category">Categoría:</label>
+            <select id="select-category" onchange="filterProducts()">
+                <option value="all">Todas las categorías</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Cosméticos">Cosméticos</option>
+                <option value="Calzado">Calzado</option>
+                <option value="Celulares">Celulares</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="select-brand">Marca:</label>
+            <select id="select-brand" onchange="filterProducts()">
+                <option value="all">Todas las marcas</option>
+                <option value="Zara">Zara</option>
+                <option value="Nike">Nike</option>
+                <option value="Adidas">Adidas</option>
+                <option value="L'Oréal">L'Oréal</option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <main class="catalog" id="catalog"></main>
+
+    <!-- Modal de Autenticación (Login / Registro) -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleAuthModal()">&times;</span>
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('login')">Iniciar Sesión</button>
+                <button class="tab-btn" onclick="switchTab('register')">Registrarse</button>
+            </div>
+
+            <!-- Formulario Login -->
+            <form id="form-login" onsubmit="handleLogin(event)">
+                <h3>Ingresar a tu Cuenta</h3>
+                <input type="email" id="login-email" placeholder="Correo Electrónico" required>
+                <input type="password" id="login-pass" placeholder="Contraseña" required>
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+
+            <!-- Formulario Registro -->
+            <form id="form-register" class="hidden" onsubmit="handleRegister(event)">
+                <h3>Crear Nueva Cuenta</h3>
+                <input type="text" id="reg-name" placeholder="Nombre Completo" required>
+                <input type="email" id="reg-email" placeholder="Correo Electrónico" required>
+                <input type="password" id="reg-pass" placeholder="Contraseña" required>
+                <button type="submit" class="btn-primary">Registrar Usuario</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Carrito y Formulario de Compra -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content modal-lg">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2>Tu Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+
+            <hr>
+
+            <!-- Formulario de Checkout / Venta -->
+            <form id="form-checkout" onsubmit="handleCheckout(event)">
+                <h3>Formulario de Pedido (Registro de Venta)</h3>
+                <input type="text" id="ship-address" placeholder="Dirección de Envío Completa" required>
+                <select id="pay-method" required>
+                    <option value="">Selecciona Método de Pago</option>
+                    <option value="Tarjeta de Crédito">Tarjeta de Crédito / Débito</option>
+                    <option value="Transferencia SQL Pay">Transferencia Bancaria</option>
+                    <option value="Efectivo contra entrega">Pago Contra Entrega</option>
+                </select>
+                <button type="submit" class="btn-success">Confirmar y Procesar Venta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Consola de Ejecución SQL en vivo -->
+    <div class="sql-console">
+        📊 <strong>Consulta SQL Generada en Tiempo Real:</strong>
+        <pre id="sql-log">-- Esperando acciones en el sitio...</pre>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

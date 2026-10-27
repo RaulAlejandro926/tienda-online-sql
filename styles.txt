@@ -1,0 +1,191 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    padding-bottom: 80px;
+}
+
+/* Header */
+.header {
+    background: #1e293b;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Filtros */
+.filters {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.filter-group select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Catálogo */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    background: #e2e8f0;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #059669;
+    margin-top: auto;
+}
+
+.btn-add {
+    margin-top: 0.8rem;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Modales */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.modal-lg {
+    max-width: 600px;
+}
+
+.close {
+    position: absolute;
+    right: 1rem; top: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.tab-buttons {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    background: #e2e8f0;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: #3b82f6;
+    color: white;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary { background: #3b82f6; color: white; border: none; padding: 0.6rem; width: 100%; border-radius: 4px; cursor: pointer; }
+.btn-success { background: #10b981; color: white; border: none; padding: 0.6rem; width: 100%; border-radius: 4px; cursor: pointer; }
+
+.hidden { display: none; }
+
+/* Consola SQL */
+.sql-console {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 0.8rem 1.5rem;
+    font-family: monospace;
+    font-size: 0.85rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+pre { display: inline; color: #facc15; }

@@ -1,0 +1,65 @@
+-- Crear base de datos
+CREATE DATABASE IF NOT EXISTS tienda_online;
+USE tienda_online;
+
+-- Tabla de Usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla de Categorías
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+-- Tabla de Marcas
+CREATE TABLE marcas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    categoria_id INT,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+);
+
+-- Tabla de Productos
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    categoria_id INT,
+    marca_id INT,
+    imagen VARCHAR(255),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id),
+    FOREIGN KEY (marca_id) REFERENCES marcas(id)
+);
+
+-- Tabla de Ventas / Pedidos
+CREATE TABLE ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    direccion_envio TEXT NOT NULL,
+    metodo_pago VARCHAR(50) NOT NULL,
+    fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+-- Datos Iniciales de Prueba
+INSERT INTO categorias (id, nombre) VALUES 
+(1, 'Ropa'), (2, 'Cosméticos'), (3, 'Calzado'), (4, 'Celulares');
+
+INSERT INTO marcas (id, nombre, categoria_id) VALUES 
+(1, 'Zara', 1), (2, 'Nike', 3), (3, 'L\'Oréal', 2), 
+(4, 'Apple', 4), (5, 'Samsung', 4), (6, 'Adidas', 3);
+
+INSERT INTO productos (nombre, precio, stock, categoria_id, marca_id, imagen) VALUES 
+('iPhone 15 Pro', 999.00, 15, 4, 4, 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300'),
+('Chaqueta de Cuero', 89.99, 25, 1, 1, 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300'),
+('Zapatillas Ultraboost', 130.00, 30, 3, 6, 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=300'),
+('Labial Matte Red', 24.50, 50, 2, 3, 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=300'),
+('Galaxy S24 Ultra', 1199.00, 10, 4, 5, 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300');
